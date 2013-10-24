@@ -36,5 +36,9 @@ echo "Restarting activemq, rhc-broker, load-balancer"
 service activemq restart
 service openshift-load-balancer-daemon restart
 service rhc-broker restart
+
+echo "Setting max gears for admin to 20"
+oo-admin-ctl-user -l admin --setmaxgears 20
+
 echo "Done."
 cd ~
