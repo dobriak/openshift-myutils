@@ -1,7 +1,7 @@
 #/bin/bash
 echo "Preparing devenv for OSE 2 + routing plugin + load-balancer-daemon"
-echo "Installing rubygem-openshift-origin-routing-activemq"
-rpm -iUvh ~/devenv-local/rubygem-openshift-origin-routing-activemq-*.noarch.rpm
+#echo "Installing rubygem-openshift-origin-routing-activemq"
+#rpm -iUvh /root/devenv-local/rubygem-openshift-origin-routing-activemq-*.noarch.rpm
 echo "Configuring routing plugin"
 cp /etc/openshift/plugins.d/openshift-origin-routing-activemq.conf.example /etc/openshift/plugins.d/openshift-origin-routing-activemq.conf
 sed -i "s/^ACTIVEMQ_PORT='61613'$/ACTIVEMQ_PORT='6163'/" /etc/openshift/plugins.d/openshift-origin-routing-activemq.conf
@@ -15,14 +15,10 @@ sed -i "s/.*gem 'openshift-origin-auth-streamline'.*/&\ngem 'openshift-origin-ro
 
 echo "Getting load-balancer source code"
 git clone https://github.com/dobriak/openshift-extras.git
-cd ~/openshift-extras
-#git remote add upstream https://github.com/Miciah/openshift-extras.git
-#git fetch upstream
-#git checkout -b load-balancer -t upstream/load-balancer-initial-commit
-git checkout -b load-balancer -t origin/load-balancer
-
+cd /root/openshift-extras
+git merge origin/load-balancer -m "boom"
 echo "Compiling load-balancer"
-cd ~/openshift-extras/admin/load-balancer
+cd /root/openshift-extras/admin/load-balancer
 tito build --rpm --test --offline
 echo "Installing load-balancer rpm"
 rpm -iUvh /tmp/tito/noarch/rubygem-openshift-origin-load-balancer-daemon-*.noarch.rpm
