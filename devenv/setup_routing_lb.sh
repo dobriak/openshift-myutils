@@ -16,7 +16,9 @@ sed -i "s/.*gem 'openshift-origin-auth-streamline'.*/&\ngem 'openshift-origin-ro
 echo "Getting load-balancer source code"
 git clone https://github.com/dobriak/openshift-extras.git
 cd /root/openshift-extras
-git merge origin/load-balancer -m "boom"
+git fetch origin
+git checkout -b mylb01 -t origin/load-balancer
+#git merge origin/load-balancer -m "boom"
 echo "Compiling load-balancer"
 cd /root/openshift-extras/admin/load-balancer
 tito build --rpm --test --offline
