@@ -6,7 +6,7 @@ exercise_devenv(){
   ssh-keygen -R test02-tester.dev.rhcloud.com
   scl enable ruby193 "rhc create-app test01 php-5.3 -s --no-git -p admin"
   echo "---rhc create-app test01 returned $?"
-  scl enable ruby193 "rhc create-app test02 php-5.3 -s --no-git -e /root/development/openshift-myutils/myenvs.txt -p admin"
+  scl enable ruby193 "rhc create-app test02 php-5.3 -s --no-git -e /root/development/openshift-myutils/single_tenant_front.txt -p admin"
   echo "---rhc create-app test02 returned $?"
   scl enable ruby193 "rhc delete-app --confirm test01 -p admin"
   echo "---rhc delete app test01 returned $?"
