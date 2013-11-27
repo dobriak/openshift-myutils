@@ -25,18 +25,27 @@ meta = {
 "keystone_password3" => "passwd4",
 "keystone_tenant3" => "lbms4"
 }
-puts "meta: #{meta.inspect}"
+#puts "meta: #{meta.inspect}"
 
-newone = meta.select{ |key,value| key.match(/\d+/)}
-#puts newone.inspect
-newtwo = Hash.new({})
-zz = {}
-newone.each do |key,value|
-  #puts "#{key},#{value}"
+
+meta2 = {
+"is_frontend" => "1",
+"host" => "127.0.0.2",
+"tenant" => "openshift2",
+"timeout" => "302",
+"open_timeout" => "302",
+"keystone_host" => "10.0.0.2",
+"keystone_username" => "user2",
+"keystone_password" => "passwd2",
+"keystone_tenant" => "lbms2"
+}
+
+#newone = meta.select{ |key,value| key.match(/\d+/)}
+multi = Hash.new { |h,k| h[k] = Hash.new(&h.default_proc) }
+
+meta.select{ |key,value| key.match(/\d+/)}.each do |key,value|
   var_num = key.split(/(\d+)/)
-  #puts var_num.inspect
-  newthree = {var_num[0] => value }
-  #puts zz.inspect
-  newtwo[var_num[1].to_s].merge!(newthree)
+  multi[var_num[1]][var_num[0]] = value
 end
-puts newtwo.inspect
+puts "multi: #{multi.inspect}"
+multi.each { |k,v| puts k}

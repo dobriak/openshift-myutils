@@ -1,0 +1,9 @@
+is_frontend=1
+host=127.0.0.2
+tenant=openshift2
+timeout=302
+open_timeout=302
+keystone_host=10.0.0.2
+keystone_username=user2
+keystone_password=passwd2
+keystone_tenant=lbms2
