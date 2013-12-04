@@ -1,8 +1,7 @@
 is_frontend=1
-host=127.0.0.2
-tenant=openshift2
-timeout=302
-open_timeout=302
-bigip_host=10.0.0.2
-bigip_username=user2
-bigip_password=passwd2
+tenant1=openshift2
+timeout1=302
+open_timeout1=302
+host1=10.0.0.2
+username1=user2
+password1=passwd2
